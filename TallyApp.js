@@ -25,3 +25,25 @@ function createStore(reducer) {
 
   return { getState, dispatch, subscribe };
 }
+
+
+// Reducer function
+function counterReducer(state = { count: 0 }, action) {
+    switch (action.type) {
+      case 'ADD':
+        return { count: state.count + 1 };
+      case 'SUBTRACT':
+        return { count: state.count - 1 };
+      case 'RESET':
+        return { count: 0 };
+      default:
+        return state;
+    }
+  }
+  
+  // Initialize store
+  const store = createStore(counterReducer);
+  
+  // Log state changes to console
+  store.subscribe(() => console.log('State:', store.getState()));
+
